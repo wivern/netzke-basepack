@@ -95,7 +95,7 @@ module Netzke
 
       # whether a column is bound to the primary_key
       def primary_key_attr?(a)
-        data_class && a[:name].to_s == data_class.primary_key
+        data_class && a[:name].to_s == data_class_primary_key
       end
 
       # Mark an attribute as "virtual" by default, when it doesn't reflect a model column, or a model column of an association
@@ -142,6 +142,10 @@ module Netzke
       end
 
       protected
+
+        def data_class_primary_key
+          data_class.primary_key
+        end
 
         def normalize_and_conditions(conditions)
           and_conditions = conditions.map do |q|

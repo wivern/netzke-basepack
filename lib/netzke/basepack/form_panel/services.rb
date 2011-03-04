@@ -100,7 +100,7 @@ module Netzke
           def create_or_update_record(hsh)
 
             hsh.merge!(config[:strong_default_attrs]) if config[:strong_default_attrs]
-            @record ||= data_class.find(:first, :conditions => {data_class.primary_key => hsh.delete(data_class.primary_key)}) # only pick up the record specified in the params if it was not provided in the configuration
+            @record ||= data_class.find(:first, :conditions => {data_class_primary_key => hsh.delete(data_class_primary_key)}) # only pick up the record specified in the params if it was not provided in the configuration
             success = true
 
             @record = data_class.new if @record.nil?

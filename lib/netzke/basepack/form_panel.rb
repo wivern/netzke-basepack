@@ -84,7 +84,7 @@ module Netzke
 
       def js_config
         super.tap do |res|
-          res[:pri] = data_class && data_class.primary_key
+          res[:pri] = data_class && data_class_primary_key
           res[:record] = js_record_data if record
         end
       end
@@ -95,7 +95,7 @@ module Netzke
       end
 
       def record
-        @record ||= config[:record] || config[:record_id] && data_class && data_class.where(data_class.primary_key => config[:record_id]).first
+        @record ||= config[:record] || config[:record_id] && data_class && data_class.where(data_class_primary_key => config[:record_id]).first
       end
 
       def configuration_components

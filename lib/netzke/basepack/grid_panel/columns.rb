@@ -333,10 +333,6 @@ module Netzke
             dest.each{ |dc| dc.reverse_merge!(source.detect{ |sc| sc[:name] == dc[:name] } || {}) }
           end
 
-          def data_class_primary_key
-            data_class.primary_key
-          end
-
       end
     end
   end
