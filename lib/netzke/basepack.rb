@@ -1,8 +1,6 @@
 require 'netzke/basepack/version'
-
-if defined? ActiveRecord
-  require 'netzke/active_record'
-end
+require 'netzke/active_record' if defined?(ActiveRecord)
+require 'netzke/mongoid' if defined?(Mongoid)
 
 module Netzke
   module Basepack
