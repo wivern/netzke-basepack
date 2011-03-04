@@ -79,6 +79,7 @@ module Netzke
       # Model class
       def data_class
         @data_class ||= begin
+          # FIXME: we're doing it wrong by using constantize_class_name, as it was meant for component classes, not for data classes
           klass = constantize_class_name("Netzke::ModelExtensions::#{config[:model]}For#{short_component_class_name}") || original_data_class
         end
       end

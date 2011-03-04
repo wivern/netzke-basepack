@@ -58,8 +58,8 @@ module Netzke
           exposed = read_inheritable_attribute(:netzke_exposed_attributes)
           if exposed && !exposed.include?(self.primary_key)
             # automatically declare primary key as a netzke attribute
-            netzke_attribute(self.primary_key)
-            exposed.insert(0, self.primary_key)
+            netzke_attribute(self.primary_key || :id)
+            exposed.insert(0, self.primary_key || :id)
           end
           exposed
         end

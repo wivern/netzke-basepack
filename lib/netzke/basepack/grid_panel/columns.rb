@@ -117,7 +117,7 @@ module Netzke
 
           if columns_from_config
             # automatically add a column that reflects the primary key (unless specified in the config)
-            columns_from_config.insert(0, {:name => data_class.primary_key}) unless columns_from_config.any?{ |c| c[:name] == data_class.primary_key }
+            columns_from_config.insert(0, {:name => data_class_primary_key}) unless columns_from_config.any?{ |c| c[:name] == data_class_primary_key }
 
             # reverse-merge each column hash from config with each column hash from exposed_attributes
             # (columns from config have higher priority)
@@ -331,6 +331,10 @@ module Netzke
           # Receives 2 arrays of columns. Merges the missing config from the +source+ into +dest+, matching columns by name
           def reverse_merge_equally_named_columns(dest, source)
             dest.each{ |dc| dc.reverse_merge!(source.detect{ |sc| sc[:name] == dc[:name] } || {}) }
+          end
+
+          def data_class_primary_key
+            data_class.primary_key
           end
 
       end

@@ -41,6 +41,8 @@ GEM
     activesupport (3.0.4)
     acts_as_list (0.1.2)
     arel (2.0.8)
+    bson (1.2.4)
+    bson_ext (1.2.4)
     builder (2.1.2)
     capybara (0.4.1.2)
       celerity (>= 0.7.9)
@@ -89,6 +91,13 @@ GEM
       activesupport (~> 3.0.4)
       arel (~> 2.0.8)
     mime-types (1.16)
+    mongo (1.2.4)
+      bson (>= 1.2.4)
+    mongoid (2.0.0.rc.7)
+      activemodel (~> 3.0)
+      mongo (~> 1.2)
+      tzinfo (~> 0.3.22)
+      will_paginate (~> 3.0.pre)
     mysql2 (0.2.6)
     nokogiri (1.4.4)
     pickle (0.4.4)
@@ -154,6 +163,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_list
+  bson_ext (~> 1.2)
   capybara
   cucumber
   cucumber-rails
@@ -161,6 +171,7 @@ DEPENDENCIES
   factory_girl
   launchy
   meta_where
+  mongoid (= 2.0.0.rc.7)
   mysql2
   netzke-core!
   netzke-persistence!
