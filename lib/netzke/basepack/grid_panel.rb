@@ -1,6 +1,6 @@
 require "netzke/basepack/grid_panel/columns"
 require "netzke/basepack/grid_panel/services"
-# require "netzke/basepack/plugins/configuration_tool"
+require "netzke/basepack/configurable"
 
 module Netzke
   module Basepack
@@ -148,6 +148,14 @@ module Netzke
       include self::Services
       include self::Columns
       include Netzke::Basepack::DataAccessor
+
+      include Netzke::Basepack::Configurable
+
+      configurable :with => [{
+        :class_name => "Netzke::Basepack::FieldsConfigurator"
+      },{
+        :class_name => "Netzke::Basepack::Panel", :title => "Config panel TWO"
+      }]
 
       js_mixin :grid_panel
       js_mixin :advanced_search if extended_search_available
