@@ -178,6 +178,8 @@ module Netzke
                 nil
               end
             end
+          elsif assoc.macro == :has_and_belongs_to_many
+            self.send("#{assoc.name.to_s.singularize}_ids")
           else
             self.send("#{assoc.options[:foreign_key] || assoc.name.to_s.foreign_key}")
           end
@@ -219,6 +221,8 @@ module Netzke
                   else
                     # what should we do in this case?
                   end
+                elsif assoc.macro == :has_and_belongs_to_many
+                  self.send("#{assoc.name.to_s.singularize}.ids=", v)
                 else
                   self.send("#{assoc.options[:foreign_key] || assoc.name.to_s.foreign_key}=", v)
                 end
