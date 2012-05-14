@@ -181,6 +181,8 @@ module Netzke
             res = res.where("#{field} #{op} ?", "#{$3}-#{$1}-#{$2}")
           when "numeric"
             res = res.where(["#{field} #{op} ?", value])
+          when "list"
+              res = res.where(["#{assoc.association_foreign_key} in (:ids)", :ids => value.split(',').map(&:to_i)])
           else
             res = res.where(["#{field} = ?", value])
           end
