@@ -182,7 +182,8 @@ module Netzke
           when "numeric"
             res = res.where(["#{field} #{op} ?", value])
           when "list"
-              res = res.where(["#{assoc.association_foreign_key} in (:ids)", :ids => value.split(',').map(&:to_i)])
+              logger.debug "Apply filter on association #{assoc.inspect}"
+              res = res.where(["#{assoc.primary_key_name} in (:ids)", :ids => value.split(',').map(&:to_i)])
           else
             res = res.where(["#{field} = ?", value])
           end
